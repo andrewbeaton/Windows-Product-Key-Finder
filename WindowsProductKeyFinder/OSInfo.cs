@@ -169,22 +169,22 @@ namespace WindowsProductKeyFinder
 
             description.Append(OS + " ");
 
-            if (!(string.IsNullOrEmpty(Release)))
+            if (!string.IsNullOrEmpty(Release))
             {
                 description.Append(Release + " "); 
             }
 
-            if (!(string.IsNullOrEmpty(Edition))) 
+            if (!string.IsNullOrEmpty(Edition))
             {
                 description.Append(Edition + " "); 
             }
 
-            if (!(string.IsNullOrEmpty(ServicePack))) 
+            if (!string.IsNullOrEmpty(ServicePack)) 
             {
                 description.Append(ServicePack + " "); 
             }
 
-            if (!(string.IsNullOrEmpty(X86Version)))
+            if (!string.IsNullOrEmpty(X86Version))
             {
                 description.Append(X86Version + " bit");
             }
