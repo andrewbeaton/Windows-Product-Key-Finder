@@ -53,12 +53,7 @@ namespace WindowsProductKeyFinder
             { 
                 Clipboard.SetDataObject(ProductKeyTextBox.Text); 
             }
-        }
-
-        private void SaveKeyToFile()
-        {
-            // To Do ...
-        }
+        } 
 
         private void ExitApplication()
         {
@@ -68,11 +63,6 @@ namespace WindowsProductKeyFinder
         private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.CopyKeyToClipboard();
-        }
-
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.SaveKeyToFile();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,22 +83,7 @@ namespace WindowsProductKeyFinder
         private void CopyButton_MouseLeave(object sender, EventArgs e)
         {
             this.StatusLabel.Text = string.Empty;
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            this.SaveKeyToFile();
-        }
-
-        private void SaveButton_MouseHover(object sender, EventArgs e)
-        {
-            this.StatusLabel.Text = "Save product key to a file.";
-        }
-
-        private void SaveButton_MouseLeave(object sender, EventArgs e)
-        {
-            this.StatusLabel.Text = string.Empty;
-        }
+        }  
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -123,26 +98,6 @@ namespace WindowsProductKeyFinder
         private void ExitButton_MouseLeave(object sender, EventArgs e)
         {
             this.StatusLabel.Text = string.Empty;
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            this.OperatingSystemTextBox.Text = OSInfo.Description();
-
-            WindowsEditions edition = OSInfo.WindowsEdition();
-
-            string productKeyText = string.Empty;
-
-            if (edition == WindowsEditions.NotSupported)
-            {
-                productKeyText = "Not found. Windows version is not supported.";
-            }
-            else
-            {
-                productKeyText = KeyFinder.GetProductKey(edition);
-            }
-
-            ProductKeyTextBox.Text = productKeyText;
         }
     }
 }
