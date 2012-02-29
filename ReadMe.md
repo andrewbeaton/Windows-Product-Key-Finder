@@ -20,7 +20,7 @@ So far, the following Windows editions have been tested and are supported:
     * Home Premium Service Pack 1 64 bit
 	
 * WindowsXP 
-    *Professional Service Pack 3 32 bit
+    * Professional Service Pack 3 32 bit
 
 If you use the code and find it works on other versions of Windows, please contact me and let me know.
 
