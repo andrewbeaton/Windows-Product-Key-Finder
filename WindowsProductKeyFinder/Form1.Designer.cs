@@ -78,7 +78,6 @@
             this.OperatingSystemTextBox.Size = new System.Drawing.Size(485, 27);
             this.OperatingSystemTextBox.TabIndex = 101;
             this.OperatingSystemTextBox.TabStop = false;
-            this.OperatingSystemTextBox.Text = "Windows 7 Enterprise Service Pack 1 64-bit";
             this.OperatingSystemTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
