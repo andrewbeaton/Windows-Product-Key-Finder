@@ -80,7 +80,7 @@ namespace WindowsProductKeyFinder
                             catch (Exception)
                             {
                                 // There was a problem getting the service pack from WMI.  Try built-in Environment class.
-                                os += GetOSServicePackLegacy();
+                                servicePack = GetOSServicePackLegacy();
                             }
                         }
 
@@ -100,12 +100,15 @@ namespace WindowsProductKeyFinder
                         }
                         catch (Exception)
                         {
+                            // There was a problem getting the operating system architecture. Try built-in Environment class.
+                            architecture = GetOSArchitectureLegacy();
                         }
                     }
                 }
             }
             catch (Exception)
             {
+                // Failed to get data from WMI so fall back to the legacy method.
             }
 
             // If WMI couldn't tell us the OS, use our legacy method.
@@ -113,11 +116,7 @@ namespace WindowsProductKeyFinder
             if (os == string.Empty)
             {
                 os = GetOSLegacy();
-            }
-
-            // If WMI couldn't tell us the architecture, use our legacy method.
-            if (architecture == 0)
-            {
+                servicePack = GetOSServicePackLegacy();
                 architecture = GetOSArchitectureLegacy();
             }
 
@@ -126,7 +125,7 @@ namespace WindowsProductKeyFinder
             string[] parts = Regex.Split(os, " ");
             Release = parts[0];
 
-            if (servicePack != null)
+            if (servicePack != null || servicePack != string.Empty)
             {
                 ServicePack = servicePack;
             }
@@ -170,22 +169,25 @@ namespace WindowsProductKeyFinder
 
             description.Append(OS + " ");
 
-            if (Release != null) 
+            if (!(string.IsNullOrEmpty(Release)))
             {
                 description.Append(Release + " "); 
             }
 
-            if (Edition != null) 
+            if (!(string.IsNullOrEmpty(Edition))) 
             {
                 description.Append(Edition + " "); 
             }
 
-            if (ServicePack != null) 
+            if (!(string.IsNullOrEmpty(ServicePack))) 
             {
                 description.Append(ServicePack + " "); 
             }
 
-            description.Append(X86Version + " bit");
+            if (!(string.IsNullOrEmpty(X86Version)))
+            {
+                description.Append(X86Version + " bit");
+            }
 
             return description.ToString();
         }
@@ -284,16 +286,7 @@ namespace WindowsProductKeyFinder
                     default:
                         break;
                 }
-            }
-
-            // Make sure we actually got something in our OS check
-            // We don't want to just return " Service Pack 2"
-            // That information is useless without the OS version.
-            if (operatingSystem != string.Empty)
-            {
-                // Got something. Let's see if there's a service pack installed.
-                operatingSystem += GetOSServicePackLegacy();
-            }
+            } 
 
             // Return the information we've gathered.
             return operatingSystem;
