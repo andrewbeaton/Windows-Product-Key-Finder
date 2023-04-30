@@ -23,7 +23,4 @@ So far, the following Windows editions have been tested and are supported:
     * Professional Service Pack 3 32 bit
 
 If you use the code and find it works on other versions of Windows, please contact me and let me know.
-
-## Contact
-
-Any questions, comments or issues, feel free to drop me a mail at mail@andrewbeaton.net
+ 
